@@ -1,7 +1,15 @@
 const DynamicDashboard = () => {
 
     const userName = "Bob";
-    const isPremium = false;
+
+    const isPremium = true;
+
+let premiumStatus = isPremium => {
+    return (
+        isPremium
+            ? "Thank you for being a premium member!" 
+            : "Upgrade to premium to enjoy exclusive features!"
+        )};
 
 //TASK LIST
     const tasks = [
@@ -9,12 +17,27 @@ const DynamicDashboard = () => {
         { taskName: "Finish Homework", completed: true},
         { taskName: "Do laundry", completed: false},
         { taskName: "Grocery shopping", completed: true},
-        { taskName: "Walk dog", completed: false}    
+        { taskName: "Walk dog", completed: true}    
     ];
 
 // COMPLETE/INCOMPLETE
    const completeCount = tasks.filter(task => task.completed).length;
    const incompleteCount = tasks.length - completeCount;
+
+// MAP METHOD, HIGHLIGHT COMPLETED TASKS IN GREEN, USE EMOJIS 
+let taskCompletion = tasks.map(task => {
+            return (
+                <li style= {{color: task.completed ? 'green' : ''}}>
+                 {task.completed ? '✅' : '❌'} {task.taskName}
+                </li>) 
+            });
+
+
+
+
+
+
+
 
  return (
     <div>
@@ -28,30 +51,17 @@ const DynamicDashboard = () => {
 
 
 {/* CONDITIONAL MESSAGE */}
-        <p>
-            {isPremium 
-            ? "Thank you for being a premium member!" 
-            : "Upgrade to premium to enjoy exclusive features!"}
-        </p>
+        <p> {premiumStatus(isPremium)} </p>
 
 
 {/* TASK LIST */}
         <h2>Your Tasks:</h2>
-        <ul>
-        {/* MAP METHOD, HIGHLIGHT COMPLETED TASKS IN GREEN, USE EMOJIS */}
-            {tasks.map(task => (
-                <li style= {{color: task.completed ? 'green' : ''}}>
-                 {task.completed ? '✅' : '❌'} {task.taskName}
-                </li> 
-            ))}
-        </ul>
+        <ul> {taskCompletion} </ul>
 
 {/* DISPLAY TASK COUNTS */}
-        <p>
-            Completed: {completeCount} | Incomplete: {incompleteCount}
-        </p>
+        <p>Completed: {completeCount} | Incomplete: {incompleteCount}</p>
+
     </div>
- )    
-};
+ )};
 
 export default DynamicDashboard;
