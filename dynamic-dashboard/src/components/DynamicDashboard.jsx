@@ -2,7 +2,7 @@ const DynamicDashboard = () => {
 
     const userName = "Bob";
 
-    const isPremium = true;
+    const isPremium = false;
 
 let premiumStatus = isPremium => {
     return (
@@ -13,7 +13,6 @@ let premiumStatus = isPremium => {
 
 //TASK LIST
     const tasks = [
-
         { taskName: "Finish Homework", completed: true},
         { taskName: "Do laundry", completed: false},
         { taskName: "Grocery shopping", completed: true},
@@ -37,30 +36,27 @@ let taskCompletion = tasks.map(task => {
 
 
 
-
+//PAGE DISPLAY:
 
  return (
-    <div>
+    <div style={{ fontFamily: 'Arial', padding: '20px', textAlign: 'center'}}>
 {/* DATE DISPLY */}
         <header>
             Date: {new Date().toLocaleDateString()}
         </header>
-
 {/* GREETING */}
         <h1>Hello, {userName}!</h1> 
-
-
 {/* CONDITIONAL MESSAGE */}
         <p> {premiumStatus(isPremium)} </p>
-
-
 {/* TASK LIST */}
-        <h2>Your Tasks:</h2>
-        <ul> {taskCompletion} </ul>
+        <h2 style={{textAlign: 'center'}}>Your Tasks:</h2>
+
+        <ul style={{ listStylePosition: 'inside', textAlign: 'center', padding: 0}}>
+        {taskCompletion} 
+        </ul>
 
 {/* DISPLAY TASK COUNTS */}
-        <p>Completed: {completeCount} | Incomplete: {incompleteCount}</p>
-
+        <p>Completed Tasks: {completeCount} | Incomplete Tasks: {incompleteCount}</p>
     </div>
  )};
 
